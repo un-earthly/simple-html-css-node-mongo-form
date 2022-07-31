@@ -48,7 +48,7 @@
             e.preventDefault();
             const email = e.target.email.value
             const pass = e.target.pass.value
-            fetch('http://localhost/login', {
+            fetch('https://floating-thicket-30253.herokuapp.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,8 +63,7 @@
             const email = e.target.email.value
             const pass = e.target.pass.value
             const name = e.target.name.value
-            // console.log(pass, name, email)
-            fetch('http://localhost/register', {
+            fetch('https://floating-thicket-30253.herokuapp.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
