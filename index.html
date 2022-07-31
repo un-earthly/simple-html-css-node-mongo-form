@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Register NODE MONGO EXPRESS HTML CSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form-box">
+        <div class='button-box'>
+            <div id='btn'></div>
+            <button type='button' onclick='toggleLogin()' class='toggle-btn'>Log In</button>
+            <button type='button' onclick='toggleRegister()' class='toggle-btn'>Register</button>
+        </div>
+        <form onsubmit="login(event)" id='login' class='input-group-login'>
+            <input name="email" type='email' class='input-field' placeholder='Email Id' required>
+            <input name="pass" type='password' class='input-field' placeholder='Enter Password' required>
+            <button type='submit' class='submit-btn'>Log in</button>
+            <button type='reset' class='submit-btn'>Reset Form</button>
+
+        </form>
+        <form onsubmit="register(event)" id='register' class='input-group-register'>
+            <input name="name" type='text' class='input-field' placeholder='Full Name ' required>
+            <input name="email" type='email' class='input-field' placeholder='Email Address' required>
+            <input name="pass" type='password' class='input-field' placeholder='Enter Password' required>
+            <button type='submit' class='submit-btn'>Register</button>
+            <button type='reset' class='submit-btn'>Reset Form</button>
+        </form>
+    </div>
+    <script>
+        var x = document.getElementById('login');
+        var y = document.getElementById('register');
+        var z = document.getElementById('btn');
+        function toggleRegister() {
+            x.style.left = '-400px';
+            y.style.left = '50px';
+            z.style.left = '110px';
+        }
+        function toggleLogin() {
+            x.style.left = '50px';
+            y.style.left = '450px';
+            z.style.left = '0px';
+        }
+
+        const login = e => {
+            e.preventDefault();
+            const email = e.target.email.value
+            const pass = e.target.pass.value
+            fetch('http://localhost/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, pass })
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }
+        const register = e => {
+            e.preventDefault();
+            const email = e.target.email.value
+            const pass = e.target.pass.value
+            const name = e.target.name.value
+            // console.log(pass, name, email)
+            fetch('http://localhost/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, pass, name })
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+
+
+        }
+    </script>
+</body>
+
+</html>
